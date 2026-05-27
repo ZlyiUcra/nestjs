@@ -2,16 +2,13 @@ import {
   Body,
   Controller,
   Get,
-  Headers,
   Post,
-  Query,
-  Req,
-  Res,
   Param,
+  Put,
+  Delete,
 } from '@nestjs/common';
-import type { Request, Response } from 'express';
 import { MovieService } from './movie.service';
-import { CreateMovieDto } from './dto/create-movie.dto';
+import { MovieDto } from './dto/movie.dto';
 
 @Controller('movies')
 export class MovieController {
@@ -23,11 +20,21 @@ export class MovieController {
 
   @Get(':id')
   findById(@Param('id') id: string) {
-    return { id };
+    return this.movieService.findById(id);
   }
 
   @Post()
-  create(@Body() dto: CreateMovieDto) {
+  create(@Body() dto: MovieDto) {
     return this.movieService.create(dto);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() dto: MovieDto) {
+    return this.movieService.update(id, dto);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.movieService.delete(id);
   }
 }
