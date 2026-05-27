@@ -30,30 +30,4 @@ export class MovieController {
   create(@Body() dto: CreateMovieDto) {
     return this.movieService.create(dto);
   }
-
-  @Get('headers')
-  getHeaders(@Headers() headers: any) {
-    return headers;
-  }
-
-  @Get('user-agent')
-  getUserAgent(@Headers('user-agent') userAgent: string) {
-    return { userAgent };
-  }
-
-  @Get('request')
-  getRequestDetails(@Req() req: Request) {
-    return {
-      method: req.method,
-      url: req.url,
-      headers: req.headers,
-      query: req.query,
-      params: req.params,
-    };
-  }
-
-  @Get('response')
-  getResponseDetails(@Res() res: Response) {
-    res.status(201).json({ message: 'Success' });
-  }
 }
