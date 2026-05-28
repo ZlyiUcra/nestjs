@@ -10,7 +10,7 @@ import { PrismaModule } from './prisma/prisma.module';
 @Module({
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, expandVariables: true }),
     PrismaModule,
     MovieModule,
     ReviewModule,
