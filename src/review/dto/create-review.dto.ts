@@ -10,7 +10,7 @@ import {
 export class CreateReviewDto {
   @IsString()
   @IsNotEmpty()
-  text?: string;
+  text!: string;
 
   @IsNumber()
   @Min(0)

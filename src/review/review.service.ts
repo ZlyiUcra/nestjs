@@ -11,7 +11,7 @@ export class ReviewService {
 
     const review = this.prismaService.review.create({
       data: {
-        text: text ? text : '',
+        text,
         rating,
         movie: { connect: { id: movieId } },
       },
