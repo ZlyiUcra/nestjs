@@ -1,9 +1,6 @@
-import type { NestMiddleware } from '@nestjs/common';
 import type { Request, Response, NextFunction } from 'express';
 
-export class LoggerMiddleware implements NestMiddleware {
-  use(req: Request, res: Response, next: NextFunction) {
-    console.log(`Request... ${req.method}`);
-    next();
-  }
+export function logger(req: Request, res: Response, next: NextFunction) {
+  console.log(`Request... ${req.method} ${req.url}`);
+  next();
 }
