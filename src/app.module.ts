@@ -6,7 +6,6 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   imports: [
     ConfigModule.forRoot({ isGlobal: true, expandVariables: true }),
     PrismaModule,
