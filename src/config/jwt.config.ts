@@ -3,6 +3,13 @@ import { type JwtModuleOptions } from '@nestjs/jwt';
 
 export async function jwtConfig(configService: ConfigService): Promise<JwtModuleOptions> {
   return {
-    secret: configService.getOrThrow<string>('JWT_SECRET') || 'default_secret',
+    secret: configService.getOrThrow<string>('JWT_SECRET'),
+    signOptions: {
+      algorithm: 'HS256',
+    },
+    verifyOptions: {
+      algorithms: ['HS256'],
+      ignoreExpiration: false,
+    },
   };
 }
