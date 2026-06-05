@@ -14,6 +14,7 @@ import { type StringValue } from 'ms';
 import { LoginInput } from './inputs/login.input';
 import { type Response, type Request } from 'express';
 import { isDev } from '../utils/is-dev.utils';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -101,17 +102,9 @@ export class AuthService {
     this.setCookie(res, '', new Date(0));
     return true;
   }
-  async validate(
-    id: string,
-  ): Promise<{ id: string; name: string; email: string; password: string }> {
+  async validate(id: string): Promise<User> {
     const user = await this.prismaService.user.findUnique({
       where: { id },
-      select: {
-        id: true,
-        name: true,
-        password: true,
-        email: true,
-      },
     });
     if (!user) {
       throw new NotFoundException('User not found');
