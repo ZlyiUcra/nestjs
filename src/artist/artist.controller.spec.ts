@@ -60,9 +60,13 @@ describe('Artist Controller', () => {
 
       try {
         await controller.findOne('123456');
-      } catch (error) {
-        expect(error).toBeInstanceOf(NotFoundException);
-        expect(error.message).toBe('Artist not found');
+      } catch (error: unknown) {
+        if (error instanceof NotFoundException) {
+          expect(error).toBeInstanceOf(NotFoundException);
+          expect(error.message).toBe('Artist not found');
+        } else {
+          throw error;
+        }
       }
     });
   });
