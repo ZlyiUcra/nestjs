@@ -8,16 +8,11 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
+model Artist {
   id String @id @default(uuid())
 
-  email    String @unique
-  password String
+  name  String
+  genre String
 
-  name String
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@map("users")
+  @@map("artists")
 }
