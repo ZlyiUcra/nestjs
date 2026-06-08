@@ -9,6 +9,10 @@ const artist = {
   name: 'The Weekend',
   genre: 'Pop',
 };
+const dto = {
+  name: 'The Weekend',
+  genre: 'Pop',
+};
 
 describe('Artist Controller', () => {
   let controller: ArtistController;
@@ -73,7 +77,6 @@ describe('Artist Controller', () => {
 
   describe('create', () => {
     it('should create and return an artist', async () => {
-      const dto = { name: artist.name, genre: artist.genre };
       const result = await controller.create(dto);
 
       expect(result).toEqual(artist);
