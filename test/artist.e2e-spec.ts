@@ -44,9 +44,10 @@ describe('ArtistController (e2e)', () => {
   it('GET /artists/:id - should return one artist by id', async () => {
     const created = await request(app.getHttpServer()).post('/artists').send(dto).expect(201);
 
-    const artistId = created.body.id as string;
+    const artistId = created.body.id + '';
 
     const response = await request(app.getHttpServer()).get(`/artists/${artistId}`).expect(200);
+
     expect(response.body).toMatchObject({
       id: artistId,
       name: dto.name,
