@@ -1,9 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { SpotifyService } from './spotify.service';
-import { SpotifyController } from './spotify.controller';
+import { HttpModule } from '@nestjs/axios';
 
+@Global()
 @Module({
-  controllers: [SpotifyController],
+  imports: [HttpModule.register({})],
   providers: [SpotifyService],
+  exports: [SpotifyService],
 })
 export class SpotifyModule {}
